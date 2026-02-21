@@ -3,20 +3,15 @@ import sys
 import time
 from getpass import getpass
 
-# Dictionary to simulate user data for authentication
 user_db = {"admin": "password123"}
 
-# Mock file system storage
 file_system = {}
 
-# Mock process management storage
 processes = []
 
-# Notification log
 notifications = []
 
 
-# Function to display notifications
 def show_notifications():
     if notifications:
         print("\n[Notifications]")
@@ -27,12 +22,11 @@ def show_notifications():
         print("\nNo new notifications.")
 
 
-# Basic Security Functionality
 def authenticate_user():
     username = input("Username: ")
-    print(f"Entered username: {username}")  # Debugging print statement
-    password = input("Password: ")  # Changed to input() for testing purposes
-    print(f"Entered password: {password}")  # Debugging print statement
+    print(f"Entered username: {username}")
+    password = input("Password: ")
+    print(f"Entered password: {password}")
 
     if username in user_db and user_db[username] == password:
         print("Login successful!")
@@ -44,7 +38,6 @@ def authenticate_user():
         return False
 
 
-# File System Functions
 def create_file(filename, content):
     file_system[filename] = content
     notifications.append(f"File '{filename}' created at {time.ctime()}")
@@ -67,7 +60,6 @@ def delete_file(filename):
         print(f"File '{filename}' does not exist.")
         notifications.append(f"Failed deletion attempt for '{filename}' at {time.ctime()}")
 
-# Process Management Functions
 def start_process(name):
     process_id = len(processes) + 1
     process_info = {"id": process_id, "name": name, "start_time": time.ctime()}
@@ -80,19 +72,15 @@ def list_processes():
     for process in processes:
         print(f"PID: {process['id']}, Name: {process['name']}, Started: {process['start_time']}")
 
-
-# Main Program
 def main():
     print("Welcome to the Python OS Simulation!")
 
-    # Authenticate user
     if not authenticate_user():
         print("Exiting system due to failed authentication.")
         return
 
-    # Main loop
     while True:
-        input("\nPress enter to proceed...")  # Prompt to press any key
+        input("\nPress enter to proceed...")
 
         print("\nChoose an option:")
         print("1. Create a file")
@@ -140,7 +128,5 @@ def main():
 
     print("Exiting Python OS Simulation. Goodbye!")
 
-
-# Run the program
 if __name__ == "__main__":
     main()
